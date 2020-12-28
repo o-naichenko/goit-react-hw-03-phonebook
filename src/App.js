@@ -43,7 +43,8 @@ class App extends Component {
     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
   }
   deleteContact = (e) => {
-    const filteredContacts = this.state.contacts.filter(
+    const { contacts } = this.state;
+    const filteredContacts = contacts.filter(
       (contact) => contact.id !== e.currentTarget.id
     );
     this.setState({
@@ -51,11 +52,12 @@ class App extends Component {
     });
   };
   filterContacts = () => {
-    if (this.state.filter.length === 0) {
-      return this.state.contacts;
+    const { filter, contacts } = this.state;
+    if (filter.length === 0) {
+      return contacts;
     } else {
-      return this.state.contacts.filter((contact) =>
-        contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+      return contacts.filter((contact) =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
       );
     }
   };

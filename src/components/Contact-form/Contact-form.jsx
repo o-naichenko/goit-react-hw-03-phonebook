@@ -1,35 +1,34 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
-import s from './Contact-form.module.css';
-
-class ContactForm extends Component {
+import { Component } from "react";
+import PropTypes from "prop-types";
+import { v4 as uuidv4 } from "uuid";
+import s from "./Contact-form.module.css";
+export default class ContactForm extends Component {
   state = {
-    name: '',
-    number: '',
+    name: "",
+    number: "",
   };
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
   };
   clearState() {
     this.setState({
-      name: '',
-      number: '',
+      name: "",
+      number: "",
     });
   }
-  onChangeHandler = e => {
+  onChangeHandler = (e) => {
     const { name, value } = e.currentTarget;
     this.setState({
       [name]: value,
     });
   };
-  onSubmitHandler = e => {
+  onSubmitHandler = (e) => {
     e.preventDefault();
     const { name, number } = e.currentTarget;
     if (name.value.length === 0) {
-      alert('Please, fill name');
+      alert("Please, fill name");
     } else if (number.value.length === 0) {
-      alert('Please, fill phone number');
+      alert("Please, fill phone number");
     } else {
       const newContact = {
         name: name.value,
@@ -37,8 +36,8 @@ class ContactForm extends Component {
         id: uuidv4(),
       };
       this.setState({
-        name: '',
-        number: '',
+        name: "",
+        number: "",
       });
       this.props.onSubmit(newContact);
       this.clearState();
@@ -77,5 +76,3 @@ class ContactForm extends Component {
     );
   }
 }
-
-export default ContactForm;
