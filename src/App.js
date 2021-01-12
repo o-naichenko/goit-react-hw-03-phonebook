@@ -63,7 +63,6 @@ class App extends Component {
   };
   setFilterValue = (value) => this.setState({ filter: value });
   render() {
-    const { contacts, filter } = this.state;
     return (
       <div className={s.App}>
         <h1 className={s.header}>Phonebook</h1>
@@ -72,7 +71,7 @@ class App extends Component {
         <h2 className={s.header}>Contacts</h2>
         <Filter onChange={this.setFilterValue} />
         <ContactList
-          contacts={filter.length === 0 ? contacts : this.filterContacts()}
+          contacts={this.filterContacts()}
           onClick={this.deleteContact}
         />
       </div>
